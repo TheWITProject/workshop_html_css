@@ -254,7 +254,7 @@ Read more about media queries [here](https://developer.mozilla.org/en-US/docs/We
 </details><br>
 
 
-# 🚨 Your CSS is being cached. `Ctrl+Shift+R` or `Cmd+Shift+R` to hard refresh and reload new CSS from the server. Otherwise, you will not see your changes!
+### 🚨 Your CSS is being cached. `Ctrl+Shift+R` or `Cmd+Shift+R` to hard refresh and reload new CSS from the server. Otherwise, you will not see your changes!<br>
 
 
 ### 🖥 Let's use CSS Grid to style `layout.html`
