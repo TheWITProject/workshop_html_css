@@ -1,0 +1,29 @@
+{% extends 'layout.html' %}
+
+{% block head %}
+<title>Projects Page</title>
+{% endblock %}
+
+{% block content %}
+<div class="projects">
+    {% for project in projects %}
+        <div class="projects_card card">
+            <h5 class="card-title">
+                <a href="/projects/{{project.id}}">
+                    {{ project.name }}
+                </a>
+            </h5>
+            <h5>Tasks:</h5>
+            {% for task in project.tasks %}
+                <ul>
+                    <li>
+                        <a href="/tasks/{{task.id}}">
+                            {{ task.name }}
+                        </a>
+                    </li>
+                </ul>
+            {% endfor %}
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends 'layout.html' %}
+
+{% block head %}
+<title>Tasks Page</title>
+{% endblock %}
+
+{% block content %}
+<div class="tasks">
+    <h1>Tasks</h1>
+    <div class="tasks_flex">
+        {% for task in tasks %}
+            <div class="tasks_card card">
+                <h5 class="card-title">
+                    <a href="/tasks/{{task.id}}">
+                        {{ task.name }}
+                    </a>
+                </h5>
+                <p>{{ task.description }}</p>
+                <p>
+                    <a href="/projects/{{task.project_id}}">
+                        Project: {{ task.project }}
+                    </a>
+                </p>
+                <p>Assignee: {{ task.person }}</p>
+                {% if task.completed == true %}
+                    <div>This task was completed!</div>
+                {% else %}
+                    <form action="/tasks/{{task.id}}/complete" method="POST">
+                        <input class="btn btn-sm btn-secondary" type="submit" value="Mark Complete">
+                    </form>
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

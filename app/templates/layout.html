@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block layout %}
+<div class="layout">
+   <div class="sidebar">
+       <ul>
+           <li><a href="/">Home</a></li>
+           <li><a href="/tasks">All Tasks</a></li>
+           <li><a href="/projects">All Projects</a></p>
+       </ul>
+   </div>
+   <div class="content">
+        {% block content %}{% endblock %}
+   </div>
+</div>
+{% endblock %}

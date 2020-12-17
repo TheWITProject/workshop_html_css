@@ -1,0 +1,25 @@
+.layout {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+}
+
+.sidebar {
+    padding: 10px;
+}
+
+.tasks_flex {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.tasks_card {
+    width: 300px;
+    margin: 20px;
+    padding: 10px;
+}
+
+.projects_card {
+    width: 300px;
+    margin: 20px;
+    padding: 10px;
+}
