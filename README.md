@@ -212,16 +212,43 @@ def get_one_project(project_id):
 <hr>
 
 ### CSS
+CSS, which stands fro **Cascading Style Sheet**, is a stylesheet language that is used to write styling rules for HTML elements. CSS allows you to select elements by either element name or class/id attribute and to then provide rules for those selected elements. Because rules can overlap and conflict, the browser's CSS engine "cascades" the rules and determines which rule takes prevalent.
+
+```css
+.example { <-- selector
+  color: red; <-- rule
+}
+```
+
+You can read more about CSS [here](https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/CSS_basics).
 
 
 ### CSS Flex
+CSS Flex is a helpful tool for laying out elements in a two dimensional way. Take a moment to skim this [article](https://css-tricks.com/snippets/css/a-guide-to-flexbox/) and play [Flexbox Froggy](https://flexboxfroggy.com/) to practice these rules.
 
 
 ### CSS Grid
+CSS Grid is a helpful tool for laying out elements in a three dimensional way. Take a moment to skim this [article](https://css-tricks.com/snippets/css/complete-guide-grid/) and play [Grid Garden](https://cssgridgarden.com/) to practice these rules.
 
 
 ### CSS Media Queries
+Have you ever gone to a website on your phone only to discover that the website looks exactly like it does on your computer, meaning it's tiny and awkward and impossible to navigate? Media queries allow you to write CSS that is responsive to the device someone is using.
 
+In this example, the element with the class `example` will be blue on screens smaller that 400px and red everywhere else:
+
+```css
+.example {
+  color: red;
+}
+
+@media (max-width: 400px) {
+  .example {
+    color: blue;
+  }
+}
+```
+
+Read more about media queries [here](https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries).
 
 <hr>
 </details><br>
@@ -231,12 +258,16 @@ def get_one_project(project_id):
 
 
 ### 🖥 Let's use CSS Grid to style `layout.html`
-In `app/api.py`, write a simple route to get all tasks from your database. You can use the `Task.query.all()` method. When you are done, test your route by sending a `GET` request to `localhost:5000/tasks` in Postman.
+Let's make our sidebar actually a sidebar. In `app/static/css/main.css`, write a rule for the `.layout` class so that it displays two columns:
 <br>
 <details><summary>Click here for the solution.</summary>
 <hr>
   
-```py
+```css
+.layout {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+}
 
 ```
 
@@ -246,27 +277,42 @@ In `app/api.py`, write a simple route to get all tasks from your database. You c
 
 
 ### 🖥 Let's use media queries to style `layout.html` for phone browsers
-In `app/api.py`, write a simple route to get all tasks from your database. You can use the `Task.query.all()` method. When you are done, test your route by sending a `GET` request to `localhost:5000/tasks` in Postman.
+If you inspect your webpage again and click the "toggle device toolbar" to display your page on a mobile resolution, you'll notice your sidebar looks  a little funky for mobile users now. Let's write a media query for the `.layout` class so there's only one column on mobile.
 <br>
 <details><summary>Click here for the solution.</summary>
 <hr>
   
-```py
+```css
+@media (max-width: 400px) {
+    .layout {
+        grid-template-columns: 1fr;
+    }
+}
 
 ```
-
 <hr>
 </details>
 <br>
 
 
 ### 🖥 Let's use CSS Flex to style `tasks.html`
-In `app/api.py`, write a simple route to get all tasks from your database. You can use the `Task.query.all()` method. When you are done, test your route by sending a `GET` request to `localhost:5000/tasks` in Postman.
+Let's give our `.tasks-card` class a set width and then style the `.tasks-flex` container so they appear side-by-side and wrap like this:
+![Example](https://i.imgur.com/sigqvVy.png)
 <br>
 <details><summary>Click here for the solution.</summary>
 <hr>
   
-```py
+```css
+.tasks_flex {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.tasks_card {
+    width: 300px;
+    margin: 20px;
+    padding: 10px;
+}
 
 ```
 
@@ -284,9 +330,11 @@ In `app/api.py`, write a simple route to get all tasks from your database. You c
 <hr>
 
 ### Styling Libraries
+A styling library is a pre-written stylesheet that you can load into your app. These are great for developers because they promote consistent style rules and save us time as developers if we are not CSS whizzes just yet.
 
 
 ### Bootstrap
+There are many options to choose from, but we're going to load Bootstrap because it's probably the most popular. Check out the docs [here](https://getbootstrap.com/docs/5.0/getting-started/introduction/). You can find a bunch of component and utility styles in the sidebar. Take a moment to explore and try some out in your app.
 
 
 <hr>
@@ -294,12 +342,26 @@ In `app/api.py`, write a simple route to get all tasks from your database. You c
 
 
 ### 🖥 Let's enable Bootstrap for our project
-In `app/api.py`, write a simple route to get all tasks from your database. You can use the `Task.query.all()` method. When you are done, test your route by sending a `GET` request to `localhost:5000/tasks` in Postman.
+In `app/templates/base.html`, uncomment out the bootstrap stylesheet CDN on line 7 and reload your app. You should see a whole bunch of styles have changes; this is because Bootstrap changes the default styles for all elements.
 <br>
 <details><summary>Click here for the solution.</summary>
 <hr>
   
-```py
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    {% block head %}{% endblock %}
+</head>
+<body>
+    {% block layout %}{% endblock %}
+</body>
+</html>
 
 ```
 
