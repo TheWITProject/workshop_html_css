@@ -58,7 +58,7 @@ def complete_task(task_id):
 def all_projects():
     data = Project.query.all()
     all_projects = [item.serialize() for item in data]
-    return render_template('projects.html', projects=all_projects)
+    return jsonify(all_projects)
 
 
 # GET /projects/{id}
@@ -66,7 +66,7 @@ def all_projects():
 def get_one_project(project_id):
     data = Project.query.get(project_id)
     one_project = data.serialize()
-    return render_template('projects.html', projects=[one_project])
+    return jsonify(one_project)
 
 
 # ------------------------------------------------
