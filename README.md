@@ -1,4 +1,4 @@
-# the \<wit\> project workshop: "flask & sql-alchemy"
+# the \<wit\> project workshop: "html & css"
 
 
 _Anytime you see a 🖥, follow the instructions below. Anytime you see a 💡, click the toggles to find more information._
